@@ -1,0 +1,27 @@
+name: Ejecutar hola-mundo.py
+
+# Evento que dispara el workflow
+on:
+  push:
+    branches:
+      - main  # Solo ejecuta el workflow en la rama main
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest  # Usaremos un entorno Ubuntu
+
+    steps:
+    - name: Clonar el repositorio
+      uses: actions/checkout@v3  # Descarga el código del repositorio
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # Cambia por la versión específica si es necesario
+
+    - name: Instalar dependencias (si las hay)
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Ejecutar hola-mundo.py
+      run: python hola-mundo.py
