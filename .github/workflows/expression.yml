@@ -1,0 +1,38 @@
+name: Expression
+run-name: Expressiones para el runner
+on:
+  push:
+    branches: ['main', 'aprendiendo-**']
+  
+  workflow-dispatch:
+    inputs:
+      edad:
+        description: 'Edad'
+        required: true
+        type: integer
+      nombre:
+        description: 'Nombre'
+        required: true
+        type: string
+
+jobs:
+  job1:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: mayor
+        if: ${{ inputs.edad >= 18 }}
+        run: echo ${{ inputs.nombre }} puede pasar
+      - name: menor
+        if: ${{ inputs.edad < 18 }}
+        run: echo ${{ inputs.nombre }} NO puede pasar
+  
+  job2:
+    if: ${{ github.events_name != 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    env:
+      USERNAME: 'JUAN'
+      AGE: '40'
+    steps:
+      - name: Bienvenida
+      - run: echo "BIENVENIDO ${{ env.USERNAME }}, TIENES ${{ env.AGE }}, ASÍ QUE PUEDES PASAR"
