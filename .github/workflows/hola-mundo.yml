@@ -1,15 +1,13 @@
 name: Ejecutar hola-mundo.py
-
+run-name: Curso Github actions - practica 1
 # Evento que dispara el workflow
-on:
-  push:
-    branches:
-      - main  # Solo ejecuta el workflow en la rama main
-
+on: [push]
+#  push:
+#    branches:
+#      - main  # Solo ejecuta el workflow en la rama main
 jobs:
   run-python-script:
     runs-on: ubuntu-latest  # Usaremos un entorno Ubuntu
-
     steps:
     - name: Clonar el repositorio
       uses: actions/checkout@v3  # Descarga el código del repositorio
@@ -19,9 +17,9 @@ jobs:
       with:
         python-version: '3.x'  # Cambia por la versión específica si es necesario
 
-    - name: Instalar dependencias (si las hay)
-      run: |
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
+#    - name: Instalar dependencias (si las hay)
+#      run: |
+#        if [ -f requirements.txt ]; then pip install -r requirements.txt;
+#         fi
     - name: Ejecutar hola-mundo.py
       run: python hola-mundo.py
