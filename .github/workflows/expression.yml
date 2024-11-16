@@ -34,4 +34,4 @@ jobs:
       AGE: '40'
     steps:
       - name: Bienvenida
-      - run: echo "BIENVENIDO ${{ env.USERNAME }}, TIENES ${{ env.AGE }}, ASÍ QUE PUEDES PASAR"
+        run: echo "BIENVENIDO ${{ env.USERNAME }}, TIENES ${{ env.AGE }}, ASÍ QUE PUEDES PASAR"
