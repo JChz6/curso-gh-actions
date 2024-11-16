@@ -1,8 +1,8 @@
 name: Expression
 run-name: Expressiones para el runner
 on:
-  push:
-    branches: ['main', 'aprendiendo-**']
+  #push:
+  #  branches: ['main', 'aprendiendo-**']
   workflow_dispatch:
     inputs:
       edad:
