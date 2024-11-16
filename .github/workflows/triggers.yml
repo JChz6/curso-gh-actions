@@ -1,0 +1,39 @@
+name: Probar diferentes triggers
+run-name: Curso Github actions practica triggers
+
+on:
+  push:
+    branches: ['main', 'aprendiendo-**']
+    paths: ['**.yml']
+  
+  schedule:
+    - cron: '1 0 27 9 *'
+
+  pull_request:
+    types: [opened, labeled]
+    branches: ['main', 'aprendiendo-**']
+    paths: ['**.yml']
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clonar repo en el runner
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    
+    - name: Definit variable
+      id: ip
+      uses: haythem/public-ip@v1.3
+  
+    - name: Definir USERNAME
+      run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+    
+    - name: Ejecutar el script
+      run: |
+        echo "Hello from IP: ${{ steps.ip.outputs.ipv4 }}"
+        python hola-mundo.py

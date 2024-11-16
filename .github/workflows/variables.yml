@@ -1,0 +1,14 @@
+name: Usando variables
+on:
+    [push, workflow_dispatch]
+env:
+    ESTADOCLIMA: nublado
+    LLUVIA: alta
+jobs:
+    informar-clima:
+        runs-on: ubuntu-latest
+        env:
+            SALUDO: Hola, el pronóstico de hoy es
+        steps:
+            - name: Saludar-e-informar
+              run: echo "$SALUDO, $ESTADOCLIMA con probabilidad de lluvia $LLUVIA!"
